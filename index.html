@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ```
-<title>나의 페이지</title>
+<title>행운을 드려요!!!</title>
 
 <style>
     body {
@@ -29,11 +29,6 @@
         margin-bottom: 20px;
     }
 
-    p {
-        font-size: 18px;
-        line-height: 1.6;
-    }
-
     img {
         display: block;
         width: 100%;
@@ -41,6 +36,12 @@
         height: auto;
         margin: 30px auto 0;
         border-radius: 10px;
+    }
+
+    .result {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 30px 0;
     }
 </style>
 ```
@@ -52,15 +53,70 @@
 ```
 <div class="container">
 
-    <h1>환영합니다!</h1>
+    <h1>♥두근두근♥</h1>
 
-    <p>
-        QR 코드를 통해 접속한 페이지입니다.
-    </p>
+    <p>당신의 결과는?</p>
 
-    <img src="image.jpg" alt="페이지 이미지">
+    <div class="result" id="result">
+        추첨 중...
+    </div>
+
+    <!-- 추첨 결과에 따라 이미지가 들어갈 자리 -->
+    <div id="image"></div>
 
 </div>
+
+
+<script>
+
+    // 0 이상 1 미만의 무작위 숫자 생성
+    const random = Math.random();
+
+    let result;
+    let image;
+
+    // 25% 확률 - 1등
+    if (random < 0.25) {
+
+        result = "🎉 1등 상품 당첨!";
+        image = "first.jpg";
+
+    }
+
+    // 25% 확률 - 2등
+    else if (random < 0.50) {
+
+        result = "🥳 축하합니다! 2등 상품입니다!";
+        image = "second.jpg";
+
+    }
+
+    // 25% 확률 - 3등
+    else if (random < 0.75) {
+
+        result = "🍀 행운의 3등 상품!";
+        image = "third.jpg";
+
+    }
+
+    // 25% 확률 - 꽝
+    else {
+
+        result = "😢 아쉽습니다!";
+        image = "lose.jpg";
+
+    }
+
+
+    // 결과 문구 표시
+    document.getElementById("result").textContent = result;
+
+
+    // 결과 이미지 표시
+    document.getElementById("image").innerHTML =
+        '<img src="' + image + '" alt="추첨 결과 이미지">';
+
+</script>
 ```
 
 </body>
